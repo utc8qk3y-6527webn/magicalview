@@ -24,10 +24,7 @@ html {
 overflow-y:scroll;
 }
 
-a:link,
-a:visited,
-a:hover,
-a:active {
+a {
 color:#666666;
 }
 
@@ -40,7 +37,7 @@ text-size-adjust:none;
 }
 
 header {
-background-color:#ffffff;
+;
 }
 
 footer {
@@ -65,7 +62,6 @@ padding-bottom:20px;
 
 main h1 {
 border:2px solid #dddddd;
-background-color:#ffffff;
 border-radius:6px;
 }
 
@@ -126,11 +122,11 @@ display:inline-block;
 
 .title,
 .btnv {
-color:#666666;
 border:2px solid #dddddd;
 }
 
 .title {
+color:#666666;
 font:normal 90%/160% sans-serif;
 outline:none;
 padding:4px 8px;
@@ -149,6 +145,14 @@ width:72px;
 text-align:center;
 }
 
+.search {
+color:#666666;
+}
+
+.delete {
+color:#666666;
+}
+
 .srck,
 .bxcr {
 max-width:540px;
@@ -163,8 +167,6 @@ display:inline-block;
 }
 
 .ck {
-color:#666666;
-background-color:#ffffff;
 border-radius:8px;
 border:2px solid #dddddd;
 padding:2px 16px;
@@ -194,8 +196,6 @@ outline:none;
 cursor:pointer;
 padding:2px 12px;
 margin:4px 8px 4px 0;
-color:#666666;
-background-color:#ffffff;
 border-radius:8px;
 border:2px solid #dddddd;
 text-decoration:underline;
@@ -204,8 +204,6 @@ text-align:center;
 }
 
 .tab .active{
-color:#666666;
-background-color:#ffffff;
 border-radius:8px;
 border:2px solid #999999;
 text-decoration:none;
@@ -213,7 +211,6 @@ cursor:text;
 }
 
 summary {
-color:#666666;
 padding:20px 10px 0 10px;
 border:none;
 cursor:text;
@@ -228,9 +225,7 @@ color:#999999;
 }
 
 .crby {
-color:#666666;
 font:normal 100%/160% Arial;
-background-color:#ffffff;
 text-align:center;
 }
 
@@ -241,13 +236,20 @@ margin:10px auto;
 button {
 border:2px solid #dddddd;
 border-radius:6px;
-color:#666666;
 outline:none;
-background-color:#ffffff;
 margin:0 4px;
 padding:4px 10px;
 text-decoration:underline;
 cursor:pointer;
+}
+
+.ypv,
+.prev,
+.reset,
+.next,
+.ynt {
+color:#666666;
+background-color:#ffffff;
 }
 
 .crte {
@@ -283,7 +285,7 @@ text-align:center;
 
 td:first-child,
 td:last-child {
-color:#666666;
+;
 }
 
 td.is-disabled {
@@ -356,9 +358,57 @@ opacity:1;
 border-color:#cccccc;
 }
 
+.drklab {
+position:relative;
+margin:8px 8px 8px 0;
+padding:2px 4px 2px 36px;
+width:72px;
+display:inline-block;
+border:2px solid #dddddd;
+border-radius:8px;
+}
+
+.drklab:after, .drklab:before {
+position:absolute;
+content:"";
+display:block;
+top:50%;
+}
+
+.drklab:after {
+left:10px;
+margin-top:-10px;
+width:16px;
+height:16px;
+border:2px solid #cccccc;
+border-radius:50%;
+}
+
+.drklab:before {
+left:15px;
+margin-top:-5px;
+width:10px;
+height:10px;
+background:#cccccc;
+border-radius:50%;
+opacity:0;
+}
+
+input[type=radio]:checked + .drklab:before {
+opacity:1;
+}
+
+.drklab:hover:after {
+border-color:#cccccc;
+}
+
+.dark {
+color:#ffffff;
+background-color:#333333;
+}
+
 .info {
 border:2px solid #dddddd;
-color:#666666;
 padding:2px 16px;
 margin:8px 8px 8px 0;
 border-radius:8px;
@@ -369,7 +419,7 @@ display:inline-block;
 @media screen and (max-width:480px){
 
 body {
-background-color:#ffffff;
+;
 }
 
 h1,
@@ -421,7 +471,7 @@ max-width:320px;
 @media screen and (min-width:480px) and (max-width:860px){
 
 body {
-background-color:#ffffff;
+;
 }
 
 h1,
@@ -496,7 +546,7 @@ margin-top:20px;
 margin-bottom:20px;
 border:2px solid #dddddd;
 border-radius:10px;
-background-color:#ffffff;
+;
 }
 
 .linklc div,
@@ -544,6 +594,7 @@ clock();
 monset();
 sc();
 dp();
+mode();
 
 setInterval('auto();',1000);
 
@@ -559,6 +610,184 @@ dp();
 input();
 
 });
+
+// mode function
+function mode() {
+
+let daev = document.getElementById('dack');
+let dagt = sessionStorage.getItem('dastrg');
+
+if(dagt === '1'){
+dava.value = "1";
+}
+else {
+dava.value = "0";
+}
+
+if(dava.value === "1"){
+dark();
+daev.elements[1].checked = true;
+}
+else {
+light();
+daev.elements[0].checked = true;
+}
+
+daev.addEventListener('change', (e) => {
+
+if(daev.elements[0].checked === true){
+light();
+sessionStorage.setItem('dastrg', '0');
+}
+else if(daev.elements[1].checked === true){
+dark();
+sessionStorage.setItem('dastrg', '1');
+}
+else{
+;
+}
+
+});
+
+}
+
+// light function
+function light() {
+
+let darkbd = document.querySelector('body');
+darkbd.classList.remove('dark');
+let darkhm = document.querySelector('.homev');
+darkhm.classList.remove('dark');
+let darkti = document.querySelector('.title');
+darkti.classList.remove('dark');
+let darkck = document.querySelector('.ck');
+darkck.classList.remove('dark');
+let darkypv = document.querySelector('.ypv');
+darkypv.classList.remove('dark');
+let darkpr = document.querySelector('.prev');
+darkpr.classList.remove('dark');
+let darkre = document.querySelector('.reset');
+darkre.classList.remove('dark');
+let darkne = document.querySelector('.next');
+darkne.classList.remove('dark');
+let darkyn = document.querySelector('.ynt');
+darkyn.classList.remove('dark');
+let darkinact0 = document.querySelector('.inact0');
+darkinact0.classList.remove('dark');
+let darkinact1 = document.querySelector('.inact1');
+darkinact1.classList.remove('dark');
+let darkinact2 = document.querySelector('.inact2');
+darkinact2.classList.remove('dark');
+let darkinact3 = document.querySelector('.inact3');
+darkinact3.classList.remove('dark');
+let darksearch = document.querySelector('.search');
+darksearch.classList.remove('dark');
+let darkdelete = document.querySelector('.delete');
+darkdelete.classList.remove('dark');
+let darkfav0 = document.querySelector('.fav0');
+darkfav0.classList.remove('dark');
+let darkfav1 = document.querySelector('.fav1');
+darkfav1.classList.remove('dark');
+let darkfav2 = document.querySelector('.fav2');
+darkfav2.classList.remove('dark');
+let darkfav3 = document.querySelector('.fav3');
+darkfav3.classList.remove('dark');
+let darkfav4 = document.querySelector('.fav4');
+darkfav4.classList.remove('dark');
+let darkfav5 = document.querySelector('.fav5');
+darkfav5.classList.remove('dark');
+let darkfav6 = document.querySelector('.fav6');
+darkfav6.classList.remove('dark');
+let darkfav7 = document.querySelector('.fav7');
+darkfav7.classList.remove('dark');
+let darkfav8 = document.querySelector('.fav8');
+darkfav8.classList.remove('dark');
+let darkfav9 = document.querySelector('.fav9');
+darkfav9.classList.remove('dark');
+let darkfav10 = document.querySelector('.fav10');
+darkfav10.classList.remove('dark');
+let darkfav11 = document.querySelector('.fav11');
+darkfav11.classList.remove('dark');
+let darkfav12 = document.querySelector('.fav12');
+darkfav12.classList.remove('dark');
+let darkfav13 = document.querySelector('.fav13');
+darkfav13.classList.remove('dark');
+let darkfav14 = document.querySelector('.fav14');
+darkfav14.classList.remove('dark');
+let darkfav15 = document.querySelector('.fav15');
+darkfav15.classList.remove('dark');
+dava.value = "0";
+
+}
+
+// dark function
+function dark() {
+
+let darkbd = document.querySelector('body');
+darkbd.classList.add('dark');
+let darkhm = document.querySelector('.homev');
+darkhm.classList.add('dark');
+let darkti = document.querySelector('.title');
+darkti.classList.add('dark');
+let darkck = document.querySelector('.ck');
+darkck.classList.add('dark');
+let darkypv = document.querySelector('.ypv');
+darkypv.classList.add('dark');
+let darkpr = document.querySelector('.prev');
+darkpr.classList.add('dark');
+let darkre = document.querySelector('.reset');
+darkre.classList.add('dark');
+let darkne = document.querySelector('.next');
+darkne.classList.add('dark');
+let darkyn = document.querySelector('.ynt');
+darkyn.classList.add('dark');
+let darkinact0 = document.querySelector('.inact0');
+darkinact0.classList.add('dark');
+let darkinact1 = document.querySelector('.inact1');
+darkinact1.classList.add('dark');
+let darkinact2 = document.querySelector('.inact2');
+darkinact2.classList.add('dark');
+let darkinact3 = document.querySelector('.inact3');
+darkinact3.classList.add('dark');
+let darksearch = document.querySelector('.search');
+darksearch.classList.add('dark');
+let darkdelete = document.querySelector('.delete');
+darkdelete.classList.add('dark');
+let darkfav0 = document.querySelector('.fav0');
+darkfav0.classList.add('dark');
+let darkfav1 = document.querySelector('.fav1');
+darkfav1.classList.add('dark');
+let darkfav2 = document.querySelector('.fav2');
+darkfav2.classList.add('dark');
+let darkfav3 = document.querySelector('.fav3');
+darkfav3.classList.add('dark');
+let darkfav4 = document.querySelector('.fav4');
+darkfav4.classList.add('dark');
+let darkfav5 = document.querySelector('.fav5');
+darkfav5.classList.add('dark');
+let darkfav6 = document.querySelector('.fav6');
+darkfav6.classList.add('dark');
+let darkfav7 = document.querySelector('.fav7');
+darkfav7.classList.add('dark');
+let darkfav8 = document.querySelector('.fav8');
+darkfav8.classList.add('dark');
+let darkfav9 = document.querySelector('.fav9');
+darkfav9.classList.add('dark');
+let darkfav10 = document.querySelector('.fav10');
+darkfav10.classList.add('dark');
+let darkfav11 = document.querySelector('.fav11');
+darkfav11.classList.add('dark');
+let darkfav12 = document.querySelector('.fav12');
+darkfav12.classList.add('dark');
+let darkfav13 = document.querySelector('.fav13');
+darkfav13.classList.add('dark');
+let darkfav14 = document.querySelector('.fav14');
+darkfav14.classList.add('dark');
+let darkfav15 = document.querySelector('.fav15');
+darkfav15.classList.add('dark');
+dava.value = "1";
+
+}
 
 // dp function
 function dp(){
@@ -1157,7 +1386,7 @@ info.innerHTML = ifset.toLocaleString();
 
 <article>
 
-<h1 id="homev">Magical View</h1>
+<h1 id="homev" class="homev">Magical View</h1>
 <div class="tabpanel">
 
 <div id="tabset" class="tab tabgroup">
@@ -1199,15 +1428,24 @@ info.innerHTML = ifset.toLocaleString();
 <input class="title" id="url" name="url" type="text" onkeyup="vcst(), input();" placeholder="Enter">
 </div>
 <div>
-<label class="btnv"><input id="btnv" value="btnv" type="button">Search</label><label class="btnv"><input id="btde" value="btde" type="button">Delete</label>
+<label class="btnv search"><input id="btnv" value="btnv" type="button">Search</label><label class="btnv delete"><input id="btde" value="btde" type="button">Delete</label>
 </div>
 </div>
 <div>
 <div class="ck" id="ck">Loading...</div>
 <input style="display:none;" id="vcva" name="vcva" type="text">
+<input style="display:none" id="dava" name="dava" type="text">
 </div>
 <div>
 <div id="info" class="info">Info</div>
+</div>
+<div>
+<form id="dack">
+<div class="srbx">
+<input type="radio" name="srva" id="light" value="light"><label for="light" class="drklab">Light</label>
+<input type="radio" name="srva" id="dark" value="dark"><label for="dark" class="drklab">Dark</label>
+</div>
+</form>
 </div>
 
 </div>
@@ -1216,42 +1454,42 @@ info.innerHTML = ifset.toLocaleString();
 
 <div class="mtsp">
 <div class="linkwd">
-<a href="https://www.cloudflare.com/">Flare</a>
-<a href="https://www.amazon.co.jp/">Amazon</a>
+<a class="fav0" href="https://www.cloudflare.com/">Flare</a>
+<a class="fav1" href="https://www.amazon.co.jp/">Amazon</a>
 </div>
 <div class="linkwd">
-<a href="https://www.wise.com/">Wise</a>
-<a href="https://www.sync.com/">Sync</a>
+<a class="fav2" href="https://www.wise.com/">Wise</a>
+<a class="fav3" href="https://www.sync.com/">Sync</a>
 </div>
 </div>
 <div class="lcsp">
 <div class="linkwd">
-<a href="https://www.box.com/">Box</a>
-<a href="https://www.mediafire.com/">Fire</a>
+<a class="fav4" href="https://www.box.com/">Box</a>
+<a class="fav5" href="https://www.mediafire.com/">Fire</a>
 </div>
 <div class="linkwd">
-<a href="https://www.icedrive.net/">Icedrive</a>
-<a href="https://www.pcloud.com/">Pcloud</a>
+<a class="fav6" href="https://www.icedrive.net/">Icedrive</a>
+<a class="fav7" href="https://www.pcloud.com/">Pcloud</a>
 </div>
 </div>
 <div class="mnsp">
 <div class="linkwd">
-<a href="https://photopea.com/">Photopea</a>
-<a href="https://signalmidi.app/edit">Signal</a>
+<a class="fav8" href="https://photopea.com/">Photopea</a>
+<a class="fav9" href="https://signalmidi.app/edit">Signal</a>
 </div>
 <div class="linkwd">
-<a href="https://coinmarketcap.com/">MCap</a>
-<a href="https://coingecko.com/">Gecho</a>
+<a class="fav10" href="https://coinmarketcap.com/">MCap</a>
+<a class="fav11" href="https://coingecko.com/">Gecho</a>
 </div>
 </div>
 <div class="lcsp">
 <div class="linkwd">
-<a href="https://bitcoinist.com/">BCoinist</a>
-<a href="https://cryptonomist.ch/">Nomist</a>
+<a class="fav12" href="https://bitcoinist.com/">BCoinist</a>
+<a class="fav13" href="https://cryptonomist.ch/">Nomist</a>
 </div>
 <div class="linkwd">
-<a href="https://thecoinrepublic.com/">TCRepub</a>
-<a href="https://zycrypto.com/">ZyCrypto</a>
+<a class="fav14" href="https://thecoinrepublic.com/">TCRepub</a>
+<a class="fav15" href="https://zycrypto.com/">ZyCrypto</a>
 </div>
 </div>
 
@@ -1273,7 +1511,7 @@ info.innerHTML = ifset.toLocaleString();
 <div class="cby">
 <div class="cmn crby">
 <div id="calendar"></div>
-<div class="bset"><button id="ypv" type="button">&lt;&lt;</button><button id="prev" type="button">&lt;</button><button id="reset" type="button">Reset</button><button id="next" type="button">&gt;</button><button id="ynt" type="button">&gt;&gt;</button></div>
+<div class="bset"><button id="ypv" class="ypv" type="button">&lt;&lt;</button><button id="prev" class="prev" type="button">&lt;</button><button id="reset" class="reset" type="button">Reset</button><button id="next" class="next" type="button">&gt;</button><button id="ynt" class="ynt" type="button">&gt;&gt;</button></div>
 <input style="display:none" id="yeva" name="yeva" type="text">
 <input style="display:none" id="mova" name="mova" type="text">
 </div>

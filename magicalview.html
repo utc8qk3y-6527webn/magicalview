@@ -624,10 +624,12 @@ dava.value = "0";
 if(dava.value === "1"){
 dark();
 daev.elements[1].checked = true;
+cfav('favicondk192.png');
 }
 else {
 light();
 daev.elements[0].checked = true;
+cfav('favicon192.png');
 }
 
 daev.addEventListener('change', (e) => {
@@ -635,16 +637,31 @@ daev.addEventListener('change', (e) => {
 if(daev.elements[0].checked === true){
 light();
 dava.value = "0";
+cfav('favicon192.png');
 }
 else if(daev.elements[1].checked === true){
 dark();
 dava.value = "1";
+cfav('favicondk192.png');
 }
 else{
 ;
 }
 
 });
+
+}
+
+// cfav function
+function cfav(newIconUrl) {
+
+let link = document.querySelector("link[rel~='icon']");
+if (!link) {
+link = document.createElement('link');
+link.rel = 'icon';
+document.head.appendChild(link);
+}
+link.href = newIconUrl;
 
 }
 

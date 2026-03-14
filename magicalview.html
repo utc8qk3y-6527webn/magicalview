@@ -608,6 +608,7 @@ monset();
 sc();
 dp();
 input();
+mode();
 
 });
 
@@ -615,12 +616,8 @@ input();
 function mode() {
 
 let daev = document.getElementById('dack');
-let dagt = sessionStorage.getItem('dastrg');
 
-if(dagt === '1'){
-dava.value = "1";
-}
-else {
+if(dava.value === ''){
 dava.value = "0";
 }
 
@@ -637,11 +634,11 @@ daev.addEventListener('change', (e) => {
 
 if(daev.elements[0].checked === true){
 light();
-sessionStorage.setItem('dastrg', '0');
+dava.value = "0";
 }
 else if(daev.elements[1].checked === true){
 dark();
-sessionStorage.setItem('dastrg', '1');
+dava.value = "1";
 }
 else{
 ;

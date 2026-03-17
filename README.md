@@ -9,3 +9,7 @@ Images are converted to BASE64. Operates on a single page. To reduce load, the c
 Input values are retained during screen transitions without using any cookies or LocalStorage.
 
 Using this as a base enables rapid creation of various specialized tools (multi-search sites, countdowns, schedule management, etc.).
+
+//Light Mode// ~/(Filename).html?id=0
+
+//Dark Mode// ~/(Filename).html?id=1
